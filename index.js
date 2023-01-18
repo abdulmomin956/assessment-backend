@@ -45,9 +45,9 @@ async function run() {
         app.patch('/user/:id', async (req, res) => {
             const { id } = req.params;
             const data = req.body;
-            console.log(data);
+            // console.log(data);
             try {
-                const result = await usersCollection.updateOne({ _id: ObjectId(id) }, { $set: { name: data.name, selectors: data.selectors } })
+                const result = await usersCollection.updateOne({ _id: ObjectId(id) }, { $set: { name: data.name, sectors: data.sectors } })
                 res.send(result)
             } catch (err) {
                 res.status(400).json(err)
@@ -57,7 +57,7 @@ async function run() {
         app.delete('/user/:id', async (req, res) => {
             const { id } = req.params;
             try {
-                const result = await minionCollection.deleteOne({ _id: ObjectId(id) })
+                const result = await usersCollection.deleteOne({ _id: ObjectId(id) })
                 res.send(result)
             } catch (err) {
                 res.status(400).json(err)
